@@ -7,7 +7,10 @@ const sections = [...document.querySelectorAll(".section-anchor")],
   prev = document.querySelector("#prev-section"),
   next = document.querySelector("#next-section"),
   label = document.querySelector(".progress-label"),
-  bar = document.querySelector("#progress-bar");
+  bar = document.querySelector("#progress-bar"),
+  groupToggle = document.querySelector("#group-toggle"),
+  groupPopover = document.querySelector("#group-popover"),
+  groupClose = document.querySelector("#group-close");
 let activeIndex = 0,
   quizLocked = false;
 function setMenu(open) {
@@ -30,11 +33,28 @@ function setActive(index) {
 function goTo(index) {
   if (!quizLocked) sections[index]?.scrollIntoView({ behavior: "smooth" });
 }
+function setGroupPopover(open) {
+  groupPopover.hidden = !open;
+  groupToggle.setAttribute("aria-expanded", String(open));
+}
 toggle.addEventListener("click", () =>
   setMenu(!menu.classList.contains("open")),
 );
 close.addEventListener("click", () => setMenu(false));
 scrim.addEventListener("click", () => setMenu(false));
+groupToggle.addEventListener("click", () =>
+  setGroupPopover(groupPopover.hidden),
+);
+groupClose.addEventListener("click", () => setGroupPopover(false));
+document.addEventListener("click", (event) => {
+  if (
+    !groupPopover.hidden &&
+    !groupPopover.contains(event.target) &&
+    event.target !== groupToggle
+  ) {
+    setGroupPopover(false);
+  }
+});
 links.forEach((link) =>
   link.addEventListener("click", (event) => {
     if (quizLocked) {
@@ -57,6 +77,7 @@ sections.forEach((section) => observer.observe(section));
 export function lockNavigation() {
   quizLocked = true;
   setMenu(false);
+  setGroupPopover(false);
   toggle.disabled = true;
   prev.disabled = true;
   next.disabled = true;

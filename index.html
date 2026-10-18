@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="An interactive digital exhibit tracing José Rizal's ideas from reform to revolution."
+      content="Rizal: The Power of Ideas, Unity, and Revolution — a digital historical exhibit from reform to revolution."
     />
-    <title>Rizal — The Power of Ideas</title>
+    <title>Rizal: The Power of Ideas, Unity, and Revolution.</title>
     <link rel="stylesheet" href="global.css" />
   </head>
   <body>
@@ -15,7 +15,7 @@
     <header class="site-nav" aria-label="Exhibit navigation">
       <a class="wordmark" href="#introduction"
         ><span class="wordmark-mark">R</span
-        ><span>Rizal<br /><em>Digital Exhibit</em></span></a
+        ><span>Rizal<br /><em>The Legacy of José Rizal</em></span></a
       >
       <div class="nav-progress" aria-label="Exhibit progress">
         <span class="progress-label">01 / 07</span
@@ -46,8 +46,45 @@
           <span class="menu-icon">☰</span
           ><span class="menu-label">Chapters</span>
         </button>
+        <button
+          class="group-button"
+          id="group-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="group-popover"
+        >
+          Group
+        </button>
       </div>
     </header>
+
+    <div
+      class="group-popover"
+      id="group-popover"
+      role="dialog"
+      aria-labelledby="group-title"
+      hidden
+    >
+      <div class="group-popover-header">
+        <p class="section-label">Project group</p>
+        <button
+          class="group-close"
+          id="group-close"
+          type="button"
+          aria-label="Close group information"
+        >
+          ×
+        </button>
+      </div>
+      <h2 id="group-title">Group: I Don't Know</h2>
+      <ul class="group-members">
+        <!-- Add members here with one <li>Member name</li> per person. -->
+        <li>Gelan Mar Villanueva</li>
+        <li>Kris Nicholas</li>
+        <li>Theo Dejaro</li>
+        <li>Matthew Mefania</li>
+      </ul>
+    </div>
 
     <aside class="chapter-menu" id="chapter-menu" aria-hidden="true">
       <div class="menu-header">
@@ -64,7 +101,7 @@
         </li>
         <li>
           <a href="#propaganda" data-section="propaganda"
-            ><span>02</span>Propaganda Movement</a
+            ><span>02</span>The Propaganda Movement</a
           >
         </li>
         <li>
@@ -74,12 +111,12 @@
         </li>
         <li>
           <a href="#dapitan" data-section="dapitan"
-            ><span>04</span>Exile in Dapitan</a
+            ><span>04</span>Rizal's Exile in Dapitan</a
           >
         </li>
         <li>
           <a href="#revolution" data-section="revolution"
-            ><span>05</span>Philippine Revolution</a
+            ><span>05</span>The Philippine Revolution</a
           >
         </li>
         <li>
@@ -104,15 +141,22 @@
         data-label="Introduction"
       >
         <div class="hero-copy">
-          <p class="eyebrow">A digital historical exhibit · 1861—1896</p>
+          <p class="eyebrow">Dr. Jose Rizal · 1861—1896</p>
+          <p class="project-title">
+            The Power of Ideas, Unity, and Revolution.
+          </p>
           <h1>
             Rizal<span>:</span><br /><em>The power of</em><br /><strong
               >ideas.</strong
             >
           </h1>
           <p class="hero-dek">
-            How one writer's vision moved through reform, community, exile, and
-            sacrifice — and helped a people imagine themselves as a nation.
+            José Rizal was a Filipino physician, writer, and reformist who
+            challenged Spanish colonial injustices through his writings and
+            advocacy for equality, education, and peaceful reform. His work
+            inspired Filipinos to recognize their shared identity and fight for
+            change, while his exile and execution strengthened his legacy as a
+            symbol of Filipino nationalism.
           </p>
           <a class="text-link" href="#propaganda"
             >Begin the journey <span>↘</span></a
@@ -133,10 +177,11 @@
       <section
         class="chapter section-anchor propaganda"
         id="propaganda"
-        data-label="Propaganda Movement"
+        data-label="The Propaganda Movement"
       >
         <div class="chapter-intro">
           <p class="chapter-number">02 <span>of 07</span></p>
+          <p class="official-topic">The Propaganda Movement</p>
           <h2>The pen<br /><em>as a weapon.</em></h2>
           <p class="chapter-lede">
             Before revolution came a campaign for representation, education, and
@@ -199,6 +244,7 @@
         <div class="split-heading">
           <p class="chapter-number">03 <span>of 07</span></p>
           <div>
+            <p class="official-topic">La Liga Filipina</p>
             <p class="eyebrow">A society for the people</p>
             <h2>Unity is<br /><em>an act.</em></h2>
           </div>
@@ -248,11 +294,12 @@
       <section
         class="chapter section-anchor dapitan"
         id="dapitan"
-        data-label="Exile in Dapitan"
+        data-label="Rizal's Exile in Dapitan"
       >
         <div class="dapitan-top">
           <div class="chapter-intro">
             <p class="chapter-number">04 <span>of 07</span></p>
+            <p class="official-topic">Rizal's Exile in Dapitan</p>
             <h2>Exile,<br /><em>made useful.</em></h2>
             <p class="chapter-lede">
               In Dapitan, Rizal turned four years of isolation into a laboratory
@@ -309,10 +356,11 @@
       <section
         class="chapter section-anchor revolution"
         id="revolution"
-        data-label="Philippine Revolution"
+        data-label="The Philippine Revolution"
       >
         <div class="revolution-head">
           <p class="chapter-number">05 <span>of 07</span></p>
+          <p class="official-topic">The Philippine Revolution</p>
           <h2>When ideas<br /><em>become action.</em></h2>
           <p class="chapter-lede">
             The revolution did not simply repeat Rizal's program. It carried his
@@ -364,6 +412,7 @@
         <div class="legacy-heading">
           <p class="chapter-number">06 <span>of 07</span></p>
           <div>
+            <p class="official-topic">Rizal's Legacy in the Digital Age</p>
             <p class="eyebrow">The through-line</p>
             <h2>A nation<br /><em>in the making.</em></h2>
           </div>
@@ -420,14 +469,6 @@
               Official Gazette of the Republic of the Philippines.
             </p>
           </div>
-          <div>
-            <p class="section-label">Image notes</p>
-            <p>
-              Historical visuals supplied in the project assets folder.
-              Attribution and licensing details should be confirmed against the
-              original source before publication.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -441,31 +482,87 @@
           <p class="eyebrow">Test your reading</p>
           <h2>What remains<br /><em>with you?</em></h2>
           <p>
-            Twenty questions across four chapters. Take your time, then see how
-            the story connects.
+            Ten questions across four chapters. Take your time, then see how the
+            story connects.
           </p>
           <button class="primary-button" id="start-quiz" type="button">
             Start the quiz <span>→</span>
           </button>
-          <p class="quiz-meta">20 questions · about 8 minutes</p>
+          <p class="quiz-meta">10 questions · about 5 minutes</p>
         </div>
         <div class="quiz-active" id="quiz-active" hidden>
-          <div class="quiz-topline">
-            <span id="question-count">Question 01 of 20</span
-            ><span id="quiz-score">Score —</span>
-          </div>
-          <form id="quiz-form">
-            <div id="questions-container"></div>
-            <button class="primary-button submit-button" type="submit">
-              Submit answers <span>→</span>
+          <div class="quiz-mode-header">
+            <div>
+              <p class="official-topic">
+                Final Quiz · From Reform to Revolution
+              </p>
+              <h2>Rizal: The Power of Ideas</h2>
+            </div>
+            <button class="quiz-exit" id="exit-quiz" type="button">
+              Exit quiz
             </button>
-          </form>
-          <div class="quiz-result" id="quiz-result" hidden></div>
+          </div>
+          <div class="quiz-layout">
+            <section class="quiz-panel" aria-label="Quiz questions">
+              <div class="quiz-topline">
+                <span id="question-count">Question 01 of 10</span>
+                <span id="quiz-score">Score —</span>
+              </div>
+              <div class="quiz-progress-track" aria-hidden="true">
+                <span id="quiz-progress-bar"></span>
+              </div>
+              <form id="quiz-form">
+                <div id="questions-container"></div>
+                <p
+                  class="quiz-validation"
+                  id="quiz-validation"
+                  role="status"
+                  hidden
+                ></p>
+                <div class="quiz-controls">
+                  <button
+                    class="quiz-arrow"
+                    id="previous-question"
+                    type="button"
+                  >
+                    ← Previous
+                  </button>
+                  <button class="quiz-arrow" id="next-question" type="button">
+                    Next →
+                  </button>
+                  <button
+                    class="primary-button submit-button"
+                    type="submit"
+                    hidden
+                  >
+                    Submit answers <span>→</span>
+                  </button>
+                </div>
+              </form>
+            </section>
+            <aside class="answer-sheet" aria-live="polite">
+              <div
+                class="answer-sheet-placeholder"
+                id="answer-sheet-placeholder"
+              >
+                <p class="section-label">Answer sheet</p>
+                <h3>Your results will appear here.</h3>
+                <p>
+                  Complete the quiz to reveal your score, percentage, and review
+                  notes.
+                </p>
+                <span class="answer-sheet-rule"></span>
+                <span class="answer-sheet-rule"></span>
+                <span class="answer-sheet-rule short"></span>
+              </div>
+              <div class="quiz-result" id="quiz-result" hidden></div>
+            </aside>
+          </div>
         </div>
       </section>
     </main>
     <footer>
-      <span>Rizal: The Power of Ideas, Unity, and Revolution</span
+      <span>Rizal: The Power of Ideas, Unity, and Revolution.</span
       ><span>Digital historical exhibit · 2026</span>
     </footer>
     <script type="module" src="js/main.js"></script>

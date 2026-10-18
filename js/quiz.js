@@ -1,4 +1,5 @@
-import { lockNavigation } from "./navigation.js";
+import { lockNavigation, unlockNavigation } from "./navigation.js";
+
 const questions = [
   [
     "What was the primary aim of the Propaganda Movement?",
@@ -29,28 +30,6 @@ const questions = [
     "Marcelo H. del Pilar and Graciano López Jaena were leading propagandists.",
   ],
   [
-    "What forms did the Propaganda Movement use most?",
-    [
-      "Secret raids",
-      "Writing and journalism",
-      "Tax collection",
-      "Military drills",
-    ],
-    1,
-    "Print culture gave reform ideas a broad public audience.",
-  ],
-  [
-    "What larger idea did the movement help develop?",
-    [
-      "A shared Filipino identity",
-      "A return to feudalism",
-      "Spanish royalism",
-      "Isolation from Asia",
-    ],
-    0,
-    "Its work helped Filipinos imagine shared political belonging.",
-  ],
-  [
     "Why did Rizal found La Liga Filipina?",
     [
       "To organize a civic society for unity",
@@ -68,49 +47,10 @@ const questions = [
     "Rizal founded it in Tondo on 3 July 1892.",
   ],
   [
-    "Which was a goal of the Liga?",
-    [
-      "Mutual assistance",
-      "Censorship of books",
-      "Private wealth for members",
-      "Foreign conquest",
-    ],
-    0,
-    "Mutual aid was central to the association.",
-  ],
-  [
-    "What happened to Rizal soon after the Liga was founded?",
-    [
-      "He became president",
-      "He was arrested and exiled",
-      "He fled to Japan permanently",
-      "He joined the army",
-    ],
-    1,
-    "His arrest was followed by exile to Dapitan.",
-  ],
-  [
-    "How is La Liga historically significant?",
-    [
-      "It modeled organized civic solidarity",
-      "It ended Spanish rule immediately",
-      "It was a newspaper in Madrid",
-      "It opposed education",
-    ],
-    0,
-    "Its civic vision outlasted the short-lived organization.",
-  ],
-  [
     "Where was Rizal exiled?",
     ["Cebu", "Dapitan", "Hong Kong", "Madrid"],
     1,
     "Dapitan was in Zamboanga, Mindanao.",
-  ],
-  [
-    "How long did his exile last?",
-    ["1890—1892", "1892—1896", "1896—1898", "1882—1887"],
-    1,
-    "Rizal lived in Dapitan from 1892 until 1896.",
   ],
   [
     "Which role did Rizal perform in Dapitan?",
@@ -119,38 +59,10 @@ const questions = [
     "He practiced medicine, especially ophthalmology.",
   ],
   [
-    "What did Rizal do as an educator in Dapitan?",
-    [
-      "Taught boys practical subjects",
-      "Banned local schools",
-      "Opened a military prison",
-      "Only taught in Spain",
-    ],
-    0,
-    "His school connected learning with practical work and character.",
-  ],
-  [
-    "Which best describes his community work?",
-    [
-      "Water, agriculture, and public improvements",
-      "Building warships",
-      "Tax farming",
-      "Closing the town market",
-    ],
-    0,
-    "He applied science and labor to improve local life.",
-  ],
-  [
     "What organization led the 1896 armed revolution?",
     ["La Solidaridad", "Katipunan", "La Liga Filipina", "Propaganda Club"],
     1,
     "The Katipunan organized for independence through armed struggle.",
-  ],
-  [
-    "Who was a principal founder of the Katipunan?",
-    ["Andrés Bonifacio", "Marcelo del Pilar", "Pedro Paterno", "Antonio Luna"],
-    0,
-    "Bonifacio was a principal founder and leader.",
   ],
   [
     "When did the Philippine Revolution break into open revolt?",
@@ -169,18 +81,14 @@ const questions = [
     1,
     "Rizal and the revolutionaries shared opposition to colonial abuse but differed on method and timing.",
   ],
-  [
-    "Why did Rizal's execution matter to nationalism?",
-    [
-      "It made him a powerful symbol",
-      "It ended all resistance",
-      "It made him governor",
-      "It erased his writings",
-    ],
-    0,
-    "His martyrdom intensified the emotional and moral force of the national cause.",
-  ],
 ];
+
+const PASSING_SCORE = 8;
+let currentQuestion = 0;
+let answers = Array(questions.length).fill(null);
+let submitted = false;
+let validationTimer;
+
 function escapeHTML(value) {
   return value.replace(
     /[&<>"']/g,
@@ -194,55 +102,163 @@ function escapeHTML(value) {
       })[char],
   );
 }
-function renderQuestions() {
-  document.querySelector("#questions-container").innerHTML = questions
-    .map(
-      (q, index) =>
-        `<fieldset class="question-block"><legend><h3>${index + 1}. ${escapeHTML(q[0])}</h3></legend><div class="answers">${q[1].map((answer, choice) => `<label><input type="radio" name="question-${index}" value="${choice}"> <span>${escapeHTML(answer)}</span></label>`).join("")}</div></fieldset>`,
-    )
-    .join("");
+
+function renderCurrentQuestion() {
+  const question = questions[currentQuestion];
+  const selectedAnswer = answers[currentQuestion];
+  document.querySelector("#questions-container").innerHTML = `
+    <fieldset class="question-block">
+      <legend><h3>${currentQuestion + 1}. ${escapeHTML(question[0])}</h3></legend>
+      <div class="answers">
+        ${question[1]
+          .map(
+            (answer, choice) => `
+              <label>
+                <input type="radio" name="current-question" value="${choice}" ${selectedAnswer === choice ? "checked" : ""}>
+                <span>${escapeHTML(answer)}</span>
+              </label>`,
+          )
+          .join("")}
+      </div>
+    </fieldset>`;
+
+  document
+    .querySelectorAll('input[name="current-question"]')
+    .forEach((input) => {
+      input.addEventListener("change", (event) => {
+        answers[currentQuestion] = Number(event.target.value);
+        updateQuizUI();
+        clearValidation();
+      });
+    });
 }
+
+function updateQuizUI() {
+  const answeredCount = answers.filter((answer) => answer !== null).length;
+  document.querySelector("#question-count").textContent =
+    `Question ${String(currentQuestion + 1).padStart(2, "0")} of ${questions.length}`;
+  document.querySelector("#quiz-score").textContent =
+    `Answered ${answeredCount} / ${questions.length}`;
+  document.querySelector("#quiz-progress-bar").style.width =
+    `${((currentQuestion + 1) / questions.length) * 100}%`;
+  document.querySelector("#previous-question").disabled =
+    currentQuestion === 0 || submitted;
+  document.querySelector("#next-question").hidden =
+    currentQuestion === questions.length - 1 || submitted;
+  document.querySelector("#next-question").disabled =
+    answers[currentQuestion] === null;
+  document.querySelector("#quiz-form .submit-button").hidden =
+    currentQuestion !== questions.length - 1 || submitted;
+}
+
+function clearValidation() {
+  window.clearTimeout(validationTimer);
+  const validation = document.querySelector("#quiz-validation");
+  validation.hidden = true;
+  validation.innerHTML = "";
+}
+
+function showValidation(unanswered) {
+  const validation = document.querySelector("#quiz-validation");
+  validation.hidden = false;
+  validation.innerHTML = `<strong>You still have ${unanswered.length} unanswered question${unanswered.length === 1 ? "" : "s"}.</strong> Please answer every question before submitting.<div class="unanswered-links">${unanswered.map((index) => `<button type="button" data-question-index="${index}">Question ${index + 1}</button>`).join("")}</div>`;
+  validation.querySelectorAll("[data-question-index]").forEach((button) => {
+    button.addEventListener("click", () => {
+      clearValidation();
+      currentQuestion = Number(button.dataset.questionIndex);
+      renderCurrentQuestion();
+      updateQuizUI();
+    });
+  });
+  validationTimer = window.setTimeout(clearValidation, 10000);
+}
+
 function showResult(score) {
+  const percentage = Math.round((score / questions.length) * 100);
+  const passed = score >= PASSING_SCORE;
   const result = document.querySelector("#quiz-result");
+  document.querySelector("#answer-sheet-placeholder").hidden = true;
   result.hidden = false;
-  result.innerHTML = `<h3>You scored ${score} / 20.</h3><p>${score >= 16 ? "A strong reading of the exhibit." : score >= 10 ? "A thoughtful start — revisit the chapters to deepen the connections." : "The archive is worth another visit. Try again and follow the through-line."}</p><div class="review">${questions.map((q, i) => `<p><strong>${i + 1}. ${escapeHTML(q[1][q[2]])}</strong> — ${escapeHTML(q[3])}</p>`).join("")}</div><button class="primary-button" id="retry-quiz" type="button">Retry quiz <span>↻</span></button>`;
+  result.innerHTML = `<p class="section-label">Final result</p><h3>${score} / ${questions.length}</h3><p class="result-percentage">${percentage}% · <strong class="result-status ${passed ? "passed" : "failed"}">${passed ? "Passed" : "Needs review"}</strong></p><p class="result-threshold">Passing mark: ${PASSING_SCORE} / ${questions.length} (80%).</p><div class="review"><p class="section-label">Answer review</p>${questions.map((q, i) => `<p><strong>${i + 1}. ${escapeHTML(q[1][q[2]])}</strong> — ${escapeHTML(q[3])}</p>`).join("")}</div><button class="primary-button" id="retry-quiz" type="button">Retry quiz <span>↻</span></button>`;
   document.querySelector("#retry-quiz").addEventListener("click", startQuiz);
 }
+
 function submitQuiz(event) {
   event.preventDefault();
-  const form = new FormData(event.target);
-  const unanswered = questions.findIndex((_, i) => !form.get(`question-${i}`));
-  if (unanswered !== -1) {
-    alert(`Please answer question ${unanswered + 1} before submitting.`);
-    document
-      .querySelectorAll(".question-block")
-      [unanswered].scrollIntoView({ behavior: "smooth", block: "center" });
+  if (submitted) return;
+  const unanswered = answers.reduce((missing, answer, index) => {
+    if (answer === null) missing.push(index);
+    return missing;
+  }, []);
+  if (unanswered.length) {
+    showValidation(unanswered);
     return;
   }
-  let score = 0;
-  questions.forEach((q, i) => {
-    if (Number(form.get(`question-${i}`)) === q[2]) score++;
-  });
-  document.querySelector("#quiz-score").textContent = `Score ${score} / 20`;
+  const score = questions.reduce(
+    (total, question, index) =>
+      total + (answers[index] === question[2] ? 1 : 0),
+    0,
+  );
+  submitted = true;
   showResult(score);
-  event.target.querySelector(".submit-button").hidden = true;
+  updateQuizUI();
 }
+
+function resetQuizState() {
+  currentQuestion = 0;
+  answers = Array(questions.length).fill(null);
+  submitted = false;
+  document.querySelector("#answer-sheet-placeholder").hidden = false;
+  document.querySelector("#quiz-result").hidden = true;
+  clearValidation();
+  renderCurrentQuestion();
+  updateQuizUI();
+}
+
 let startQuiz;
 export function initQuiz() {
   const start = document.querySelector("#start-quiz"),
     intro = document.querySelector("#quiz-intro"),
     active = document.querySelector("#quiz-active"),
-    form = document.querySelector("#quiz-form");
+    form = document.querySelector("#quiz-form"),
+    previous = document.querySelector("#previous-question"),
+    next = document.querySelector("#next-question"),
+    exit = document.querySelector("#exit-quiz");
   startQuiz = () => {
+    document.body.classList.add("quiz-mode");
     intro.hidden = true;
     active.hidden = false;
-    renderQuestions();
-    form.querySelector(".submit-button").hidden = false;
-    document.querySelector("#quiz-result").hidden = true;
-    document.querySelector("#quiz-score").textContent = "Score —";
+    resetQuizState();
     lockNavigation();
-    document.querySelector("#quiz").scrollIntoView({ behavior: "smooth" });
+    document.querySelector("#quiz").scrollIntoView({ behavior: "auto" });
   };
+  previous.addEventListener("click", () => {
+    if (currentQuestion === 0 || submitted) return;
+    clearValidation();
+    currentQuestion -= 1;
+    renderCurrentQuestion();
+    updateQuizUI();
+  });
+  next.addEventListener("click", () => {
+    if (
+      currentQuestion === questions.length - 1 ||
+      answers[currentQuestion] === null ||
+      submitted
+    )
+      return;
+    clearValidation();
+    currentQuestion += 1;
+    renderCurrentQuestion();
+    updateQuizUI();
+  });
+  exit.addEventListener("click", () => {
+    document.body.classList.remove("quiz-mode");
+    active.hidden = true;
+    intro.hidden = false;
+    resetQuizState();
+    unlockNavigation();
+    document.querySelector("#quiz").scrollIntoView({ behavior: "smooth" });
+  });
   start.addEventListener("click", startQuiz);
   form.addEventListener("submit", submitQuiz);
 }
