@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="An interactive digital exhibit tracing José Rizal's ideas from reform to revolution."
+    />
+    <title>Rizal — The Power of Ideas</title>
+    <link rel="stylesheet" href="global.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#introduction">Skip to exhibit</a>
+    <header class="site-nav" aria-label="Exhibit navigation">
+      <a class="wordmark" href="#introduction"
+        ><span class="wordmark-mark">R</span
+        ><span>Rizal<br /><em>Digital Exhibit</em></span></a
+      >
+      <div class="nav-progress" aria-label="Exhibit progress">
+        <span class="progress-label">01 / 07</span
+        ><span class="progress-track"><span id="progress-bar"></span></span>
+      </div>
+      <div class="nav-actions">
+        <button
+          class="nav-arrow"
+          id="prev-section"
+          type="button"
+          aria-label="Previous section"
+        >
+          ←</button
+        ><button
+          class="nav-arrow"
+          id="next-section"
+          type="button"
+          aria-label="Next section"
+        >
+          →</button
+        ><button
+          class="menu-button"
+          id="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="chapter-menu"
+        >
+          <span class="menu-icon">☰</span
+          ><span class="menu-label">Chapters</span>
+        </button>
+      </div>
+    </header>
+
+    <aside class="chapter-menu" id="chapter-menu" aria-hidden="true">
+      <div class="menu-header">
+        <span>Navigate the exhibit</span
+        ><button id="menu-close" type="button" aria-label="Close chapter menu">
+          ×
+        </button>
+      </div>
+      <ol class="chapter-list">
+        <li>
+          <a href="#introduction" data-section="introduction"
+            ><span>01</span>Introduction</a
+          >
+        </li>
+        <li>
+          <a href="#propaganda" data-section="propaganda"
+            ><span>02</span>Propaganda Movement</a
+          >
+        </li>
+        <li>
+          <a href="#liga" data-section="liga"
+            ><span>03</span>La Liga Filipina</a
+          >
+        </li>
+        <li>
+          <a href="#dapitan" data-section="dapitan"
+            ><span>04</span>Exile in Dapitan</a
+          >
+        </li>
+        <li>
+          <a href="#revolution" data-section="revolution"
+            ><span>05</span>Philippine Revolution</a
+          >
+        </li>
+        <li>
+          <a href="#legacy" data-section="legacy"
+            ><span>06</span>Rizal's Legacy</a
+          >
+        </li>
+        <li>
+          <a href="#quiz" data-section="quiz"><span>07</span>Final Quiz</a>
+        </li>
+      </ol>
+      <p class="menu-note">
+        From reform to revolution<br /><em>An exhibit in seven chapters</em>
+      </p>
+    </aside>
+    <div class="menu-scrim" id="menu-scrim"></div>
+
+    <main>
+      <section
+        class="hero section-anchor"
+        id="introduction"
+        data-label="Introduction"
+      >
+        <div class="hero-copy">
+          <p class="eyebrow">A digital historical exhibit · 1861—1896</p>
+          <h1>
+            Rizal<span>:</span><br /><em>The power of</em><br /><strong
+              >ideas.</strong
+            >
+          </h1>
+          <p class="hero-dek">
+            How one writer's vision moved through reform, community, exile, and
+            sacrifice — and helped a people imagine themselves as a nation.
+          </p>
+          <a class="text-link" href="#propaganda"
+            >Begin the journey <span>↘</span></a
+          >
+        </div>
+        <figure class="hero-image">
+          <img
+            src="assets/rizal.jpg"
+            alt="Portrait of José Rizal in formal dress"
+          />
+          <figcaption><span>José Rizal</span><span>1861—1896</span></figcaption>
+        </figure>
+        <div class="hero-stamp">
+          FROM<br /><span>REFORM</span><br />TO<br /><span>REVOLUTION</span>
+        </div>
+      </section>
+
+      <section
+        class="chapter section-anchor propaganda"
+        id="propaganda"
+        data-label="Propaganda Movement"
+      >
+        <div class="chapter-intro">
+          <p class="chapter-number">02 <span>of 07</span></p>
+          <h2>The pen<br /><em>as a weapon.</em></h2>
+          <p class="chapter-lede">
+            Before revolution came a campaign for representation, education, and
+            equal rights.
+          </p>
+        </div>
+        <figure class="feature-image">
+          <img
+            src="assets/propaganda-movement.jpg"
+            alt="Historical illustration associated with the Propaganda Movement"
+          />
+          <figcaption>
+            <span>Writing as public action</span
+            ><span>Propaganda Movement</span>
+          </figcaption>
+        </figure>
+        <div class="body-copy">
+          <p>
+            <span class="dropcap">In</span> the late nineteenth century,
+            Filipino intellectuals in Spain and the Philippines organized the
+            <strong>Propaganda Movement</strong>. They did not initially call
+            for independence. They argued that Filipinos deserved the same civil
+            rights as Spaniards and that the colony's abuses demanded reform.
+          </p>
+          <p>
+            Through essays, novels, speeches, and journalism, figures such as
+            Rizal, <strong>Marcelo H. del Pilar</strong>, and
+            <strong>Graciano López Jaena</strong> built a public case for
+            change. Their newspaper, <em>La Solidaridad</em>, became the
+            movement's most important platform.
+          </p>
+          <div class="pull-quote">
+            “The pen is mightier than the sword when it gives a people a
+            language for their hopes.”<small
+              >— the spirit of the reform campaign</small
+            >
+          </div>
+        </div>
+        <div class="fact-row">
+          <div>
+            <span class="fact-label">Their objective</span
+            ><strong>Reform within<br />the Spanish system</strong>
+          </div>
+          <div>
+            <span class="fact-label">Their medium</span
+            ><strong>Print, debate,<br />and education</strong>
+          </div>
+          <div>
+            <span class="fact-label">Their legacy</span
+            ><strong>A shared Filipino<br />political identity</strong>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="chapter section-anchor liga"
+        id="liga"
+        data-label="La Liga Filipina"
+      >
+        <div class="split-heading">
+          <p class="chapter-number">03 <span>of 07</span></p>
+          <div>
+            <p class="eyebrow">A society for the people</p>
+            <h2>Unity is<br /><em>an act.</em></h2>
+          </div>
+        </div>
+        <figure class="wide-image">
+          <img
+            src="assets/laliga-plaza.jpg"
+            alt="Historical scene representing the community ideals of La Liga Filipina"
+          />
+          <figcaption>
+            <span>La Liga Filipina</span
+            ><span>Founded in Manila · 3 July 1892</span>
+          </figcaption>
+        </figure>
+        <div class="liga-grid">
+          <div class="body-copy">
+            <p>
+              Rizal founded <strong>La Liga Filipina</strong> in Tondo in 1892
+              as a civic association. Its goal was practical: bring Filipinos
+              together so they could support one another, defend one another
+              from injustice, and work toward social improvement.
+            </p>
+            <p>
+              Its members imagined a community with mutual aid, education, and a
+              collective voice. The Liga was not a revolutionary army; it was a
+              blueprint for responsible citizenship.
+            </p>
+          </div>
+          <div class="principles">
+            <h3>Five principles</h3>
+            <ol>
+              <li><span>01</span>Unity and mutual protection</li>
+              <li><span>02</span>Mutual assistance in need</li>
+              <li><span>03</span>Defense against violence</li>
+              <li><span>04</span>Education and livelihood</li>
+              <li><span>05</span>Study of reforms</li>
+            </ol>
+          </div>
+          <div class="margin-note">
+            <span>July 6, 1892</span>Rizal was arrested days after the Liga's
+            founding and later exiled to Dapitan. The organization quickly
+            divided, but its vision of organized Filipino solidarity endured.
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="chapter section-anchor dapitan"
+        id="dapitan"
+        data-label="Exile in Dapitan"
+      >
+        <div class="dapitan-top">
+          <div class="chapter-intro">
+            <p class="chapter-number">04 <span>of 07</span></p>
+            <h2>Exile,<br /><em>made useful.</em></h2>
+            <p class="chapter-lede">
+              In Dapitan, Rizal turned four years of isolation into a laboratory
+              for service.
+            </p>
+          </div>
+          <figure class="feature-image">
+            <img
+              src="assets/dapitan.jpg"
+              alt="Landscape in Dapitan, Mindanao"
+            />
+            <figcaption>
+              <span>Dapitan, Zamboanga</span><span>1892—1896</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="service-grid">
+          <div class="service-intro">
+            <p class="eyebrow">A different kind of resistance</p>
+            <p>
+              Exile did not stop Rizal's work. Away from Manila's political
+              circles, he practiced a quieter, tangible form of nation-building:
+              teaching, healing, cultivating, and improving the place around
+              him.
+            </p>
+          </div>
+          <div class="service-item">
+            <span class="service-icon">✣</span>
+            <h3>Education</h3>
+            <p>
+              He taught boys through practical study, discipline, and close
+              attention to the world around them.
+            </p>
+          </div>
+          <div class="service-item">
+            <span class="service-icon">✚</span>
+            <h3>Medicine</h3>
+            <p>
+              He treated patients as an ophthalmologist and earned the trust of
+              the local community.
+            </p>
+          </div>
+          <div class="service-item">
+            <span class="service-icon">⌁</span>
+            <h3>Community</h3>
+            <p>
+              He helped develop water systems, agriculture, and public works
+              that improved daily life.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="chapter section-anchor revolution"
+        id="revolution"
+        data-label="Philippine Revolution"
+      >
+        <div class="revolution-head">
+          <p class="chapter-number">05 <span>of 07</span></p>
+          <h2>When ideas<br /><em>become action.</em></h2>
+          <p class="chapter-lede">
+            The revolution did not simply repeat Rizal's program. It carried his
+            questions into a new, more urgent register.
+          </p>
+        </div>
+        <figure class="revolution-image">
+          <img
+            src="assets/kkk.jpg"
+            alt="Historical image depicting the Katipunan and Philippine Revolution"
+          />
+          <figcaption>
+            <span>The Katipunan</span><span>Revolution begins · 1896</span>
+          </figcaption>
+        </figure>
+        <div class="revolution-copy">
+          <p class="dropcap">The</p>
+          <p>
+            Katipunan, founded by <strong>Andrés Bonifacio</strong> and others
+            in 1892, pursued independence through secret organization and armed
+            struggle. In August 1896, the discovery of the society helped
+            trigger open revolt against Spanish rule.
+          </p>
+          <p>
+            Rizal's position was distinct: he advocated peaceful reform and
+            opposed the uprising at that moment. Yet his novels, his execution
+            on 30 December 1896, and his example gave the revolution a powerful
+            moral vocabulary. His death transformed a reformist intellectual
+            into a national symbol.
+          </p>
+          <div class="contrast">
+            <div>
+              <span>Rizal</span
+              ><strong>Reform through<br />education and civic action</strong>
+            </div>
+            <div>
+              <span>Revolutionaries</span
+              ><strong>Independence through<br />organized resistance</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="chapter section-anchor legacy"
+        id="legacy"
+        data-label="Rizal's Legacy"
+      >
+        <div class="legacy-heading">
+          <p class="chapter-number">06 <span>of 07</span></p>
+          <div>
+            <p class="eyebrow">The through-line</p>
+            <h2>A nation<br /><em>in the making.</em></h2>
+          </div>
+        </div>
+        <div class="timeline-wrap">
+          <div class="section-label">
+            A life in context <span>Timeline</span>
+          </div>
+          <ol class="timeline" id="timeline-list"></ol>
+        </div>
+        <div class="legacy-lower">
+          <div>
+            <p class="section-label">From one chapter to the next</p>
+            <div class="connections">
+              <p>
+                <span>01</span><strong>Reform</strong> gave Filipinos a shared
+                language of rights.
+              </p>
+              <p>
+                <span>02</span><strong>Unity</strong> made those ideas social
+                and organized.
+              </p>
+              <p>
+                <span>03</span><strong>Service</strong> showed nationhood as
+                daily work.
+              </p>
+              <p>
+                <span>04</span><strong>Revolution</strong> made the demand for
+                freedom impossible to ignore.
+              </p>
+            </div>
+          </div>
+          <div class="conclusion">
+            <p class="section-label">Conclusion</p>
+            <h3>How did Rizal contribute to Filipino nationalism?</h3>
+            <p>
+              Rizal helped Filipinos see themselves as one people with a shared
+              history, dignity, and future. His writing exposed colonial
+              injustice; his civic projects modeled collective responsibility;
+              and his execution gave the struggle an enduring symbol. Though he
+              did not lead the armed revolution, his ideas helped make Filipino
+              nationalism imaginable, articulate, and powerful.
+            </p>
+          </div>
+        </div>
+        <div class="references">
+          <div>
+            <p class="section-label">References</p>
+            <p>
+              For further study:
+              <em>José Rizal: Life, Works, and Writings</em> by Gregorio F.
+              Zaide; Ambeth R. Ocampo's <em>Rizal Without the Overcoat</em>; the
+              National Historical Commission of the Philippines; and the
+              Official Gazette of the Republic of the Philippines.
+            </p>
+          </div>
+          <div>
+            <p class="section-label">Image notes</p>
+            <p>
+              Historical visuals supplied in the project assets folder.
+              Attribution and licensing details should be confirmed against the
+              original source before publication.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="chapter section-anchor quiz-section"
+        id="quiz"
+        data-label="Final Quiz"
+      >
+        <div class="quiz-intro" id="quiz-intro">
+          <p class="chapter-number">07 <span>of 07</span></p>
+          <p class="eyebrow">Test your reading</p>
+          <h2>What remains<br /><em>with you?</em></h2>
+          <p>
+            Twenty questions across four chapters. Take your time, then see how
+            the story connects.
+          </p>
+          <button class="primary-button" id="start-quiz" type="button">
+            Start the quiz <span>→</span>
+          </button>
+          <p class="quiz-meta">20 questions · about 8 minutes</p>
+        </div>
+        <div class="quiz-active" id="quiz-active" hidden>
+          <div class="quiz-topline">
+            <span id="question-count">Question 01 of 20</span
+            ><span id="quiz-score">Score —</span>
+          </div>
+          <form id="quiz-form">
+            <div id="questions-container"></div>
+            <button class="primary-button submit-button" type="submit">
+              Submit answers <span>→</span>
+            </button>
+          </form>
+          <div class="quiz-result" id="quiz-result" hidden></div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span>Rizal: The Power of Ideas, Unity, and Revolution</span
+      ><span>Digital historical exhibit · 2026</span>
+    </footer>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
